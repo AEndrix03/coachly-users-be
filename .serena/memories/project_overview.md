@@ -1,0 +1,11 @@
+# Project Overview
+- Project name: coachly-users-be
+- Purpose: Spring Boot microservice for the Coachly user domain.
+- Current state: minimal bootstrap service; source tree currently contains the Spring Boot application entrypoint and a basic context-load test, with package scaffolding for controller/mapper/model/repository/service.
+- Build system: Maven Wrapper (`mvnw`, `mvnw.cmd`).
+- Platform: Windows development environment.
+- Main coordinates from `pom.xml`: groupId `it.aredegalli.coachly`, artifactId `users-be`, name `coachly-users-be`.
+- Main dependencies: Spring Boot starter, Spring Data JPA, Validation, Actuator, PostgreSQL driver, MapStruct, Lombok, `users-be-lib`, common `exceptions`, common `validation`.
+- Runtime config: `src/main/resources/application.yaml` expects `COACHLY_DB_URL`, `COACHLY_DB_USERNAME`, `COACHLY_DB_PASSWORD`; virtual threads are enabled.
+- Containerization: multi-stage Docker build with Eclipse Temurin 25; runtime exposes port 8080 and runs as non-root.
+- Documentation note: `docs/architecture/docker-runtime.md` and `docs/architecture/dto-design.md` contain stale references to the exercise domain and should be treated carefully until aligned with the user domain.
