@@ -1,6 +1,6 @@
 package it.aredegalli.coachly.user.repository;
 
-import com.coachly.userprofile.model.enums.AuthProvider;
+import it.aredegalli.coachly.user.enums.AuthProvider;
 import it.aredegalli.coachly.user.model.ExternalIdentity;
 import org.springframework.data.jpa.repository.JpaRepository;
 

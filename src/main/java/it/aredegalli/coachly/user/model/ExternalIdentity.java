@@ -1,6 +1,6 @@
 package it.aredegalli.coachly.user.model;
 
-import com.coachly.userprofile.model.enums.AuthProvider;
+import it.aredegalli.coachly.user.enums.AuthProvider;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,8 +1,8 @@
 package it.aredegalli.coachly.user.model;
 
-import com.coachly.userprofile.model.enums.BiologicalSex;
-import com.coachly.userprofile.model.enums.FitnessLevel;
-import com.coachly.userprofile.model.enums.HeightUnit;
+import it.aredegalli.coachly.user.enums.BiologicalSex;
+import it.aredegalli.coachly.user.enums.FitnessLevel;
+import it.aredegalli.coachly.user.enums.HeightUnit;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;

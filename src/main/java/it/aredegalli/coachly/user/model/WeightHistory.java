@@ -1,6 +1,6 @@
 package it.aredegalli.coachly.user.model;
 
-import com.coachly.userprofile.model.enums.WeightUnit;
+import it.aredegalli.coachly.user.enums.WeightUnit;
 import jakarta.persistence.*;
 import lombok.*;
 
