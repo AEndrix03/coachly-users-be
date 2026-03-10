@@ -3,10 +3,13 @@ package it.aredegalli.coachly.user.model;
 import com.coachly.userprofile.model.enums.HeightUnit;
 import com.coachly.userprofile.model.enums.Theme;
 import com.coachly.userprofile.model.enums.WeightUnit;
-import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.Type;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -14,7 +17,7 @@ import java.util.UUID;
 /**
  * User app preferences.
  *
- * <p>One row per user. Always upsert — never insert a second row.
+ * <p>One row per user. Always upsert, never insert a second row.
  * Created automatically at provisioning time with sensible defaults.
  *
  * <p>{@link #notificationSettings} is stored as JSONB for flexibility:
@@ -25,8 +28,8 @@ import java.util.UUID;
  * ai-service) can read the user's unit preference in a single call
  * without joining to the profile table.
  *
- * <p><strong>Dependency:</strong> requires {@code io.hypersistence:hypersistence-utils-hibernate-63}
- * on the classpath for {@link JsonBinaryType}.
+ * <p>The JSONB column uses Hibernate native JSON support via
+ * {@link JdbcTypeCode} and {@link SqlTypes#JSON}.
  */
 @Entity
 @Table(schema = "user_profile", name = "preferences")
@@ -44,7 +47,7 @@ public class Preferences {
     @Column(name = "user_id", nullable = false, updatable = false)
     private UUID userId;
 
-    // ── Locale & display ─────────────────────────────────────
+    // Locale & display
 
     /**
      * BCP-47 language tag, e.g. "it", "en", "es-MX".
@@ -63,7 +66,7 @@ public class Preferences {
     @Column(name = "theme", nullable = false, length = 10)
     private Theme theme;
 
-    // ── Unit preferences ─────────────────────────────────────
+    // Unit preferences
 
     /**
      * Preferred unit for weight display across the entire app.
@@ -81,7 +84,7 @@ public class Preferences {
     @Column(name = "preferred_height_unit", nullable = false, length = 10)
     private HeightUnit preferredHeightUnit;
 
-    // ── Notifications ─────────────────────────────────────────
+    // Notifications
 
     /**
      * Flexible notification configuration stored as JSONB.
@@ -101,17 +104,16 @@ public class Preferences {
      * }</pre>
      *
      * <p>New channels can be added to the JSON without schema migrations.
-     * Deserialized to {@link com.coachly.userprofile.model.dto.NotificationSettings}
-     * at the service layer.
+     * Deserialized at the service layer.
      */
-    @Type(JsonBinaryType.class)
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "notification_settings", nullable = false, columnDefinition = "jsonb")
     private String notificationSettings;
 
     @Column(name = "updated_at", nullable = false)
     private OffsetDateTime updatedAt;
 
-    // ── Lifecycle hooks ──────────────────────────────────────
+    // Lifecycle hooks
 
     @PrePersist
     protected void onCreate() {
