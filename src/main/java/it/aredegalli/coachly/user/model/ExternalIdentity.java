@@ -1,6 +1,7 @@
 package it.aredegalli.coachly.user.model;
 
 import it.aredegalli.coachly.user.enums.AuthProvider;
+import it.aredegalli.coachly.user.persistence.AuthProviderConverter;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -53,7 +54,7 @@ public class ExternalIdentity {
     /**
      * The authentication provider that issued the identity.
      */
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = AuthProviderConverter.class)
     @Column(name = "provider", nullable = false, length = 20, updatable = false)
     private AuthProvider provider;
 
