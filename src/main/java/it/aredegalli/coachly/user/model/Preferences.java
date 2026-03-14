@@ -129,9 +129,9 @@ public class Preferences {
     private void applyDefaults() {
         if (this.locale == null)               this.locale = "en";
         if (this.timezone == null)             this.timezone = "UTC";
-        if (this.theme == null)                this.theme = Theme.system;
-        if (this.preferredWeightUnit == null)  this.preferredWeightUnit = WeightUnit.kg;
-        if (this.preferredHeightUnit == null)  this.preferredHeightUnit = HeightUnit.cm;
+        if (this.theme == null)                this.theme = Theme.SYSTEM;
+        if (this.preferredWeightUnit == null)  this.preferredWeightUnit = WeightUnit.KG;
+        if (this.preferredHeightUnit == null)  this.preferredHeightUnit = HeightUnit.CM;
         if (this.notificationSettings == null) {
             this.notificationSettings = """
                     {

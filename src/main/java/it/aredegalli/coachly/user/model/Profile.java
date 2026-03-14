@@ -107,10 +107,10 @@ public class Profile {
         this.createdAt = now;
         this.updatedAt = now;
         if (this.biologicalSex == null) {
-            this.biologicalSex = BiologicalSex.not_specified;
+            this.biologicalSex = BiologicalSex.NOT_SPECIFIED;
         }
         if (this.heightUnit == null) {
-            this.heightUnit = HeightUnit.cm;
+            this.heightUnit = HeightUnit.CM;
         }
         if (this.weeklyTarget == null) {
             this.weeklyTarget = 3;
